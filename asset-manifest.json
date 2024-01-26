@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/COMPASS-3D-courses-WEB/static/css/main.5549f5d2.css",
+    "main.css": "/COMPASS-3D-courses-WEB/static/css/main.b64bbeb6.css",
     "main.js": "/COMPASS-3D-courses-WEB/static/js/main.8cf5b07f.js",
     "static/js/787.a3c4ac4e.chunk.js": "/COMPASS-3D-courses-WEB/static/js/787.a3c4ac4e.chunk.js",
     "static/media/Montserrat-BlackItalic.eot": "/COMPASS-3D-courses-WEB/static/media/Montserrat-BlackItalic.e885010b57eaa0bc6e3e.eot",
@@ -88,12 +88,12 @@
     "static/media/github.svg": "/COMPASS-3D-courses-WEB/static/media/github.a2dcecaacdba94077f71818776dd805b.svg",
     "static/media/module.svg": "/COMPASS-3D-courses-WEB/static/media/module.9a2168bdb51c7fade5071951ac14873c.svg",
     "static/media/home.svg": "/COMPASS-3D-courses-WEB/static/media/home.cea77df53d0037651dafa135e3b74ace.svg",
-    "main.5549f5d2.css.map": "/COMPASS-3D-courses-WEB/static/css/main.5549f5d2.css.map",
+    "main.b64bbeb6.css.map": "/COMPASS-3D-courses-WEB/static/css/main.b64bbeb6.css.map",
     "main.8cf5b07f.js.map": "/COMPASS-3D-courses-WEB/static/js/main.8cf5b07f.js.map",
     "787.a3c4ac4e.chunk.js.map": "/COMPASS-3D-courses-WEB/static/js/787.a3c4ac4e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5549f5d2.css",
+    "static/css/main.b64bbeb6.css",
     "static/js/main.8cf5b07f.js"
   ]
 }
