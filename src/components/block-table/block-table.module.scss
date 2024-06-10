@@ -17,7 +17,11 @@
   border-collapse: collapse;
   font-family: fonts.$font-family-main;
   color: var(--color-text-main);
-	//border-inline: 1px solid var(--color-border-table);
+
+  & td,
+  th {
+    padding: var(--size-100);
+  }
 
   &,
   th,
@@ -25,19 +29,14 @@
     border-collapse: collapse;
     border-left: 1px solid var(--color-border-table);
 
-		&:first-of-type {
-			border-left: none;
-		}
+    &:first-of-type {
+      border-left: none;
+    }
   }
 
-	& img {
-		margin: 0;
-	}
-
-  & td,
-  th {
-    padding: var(--size-100);
-  }
+  & img {
+    margin: 0;
+  }  
 
   & thead {
     position: sticky;
@@ -51,15 +50,23 @@
     }
 
     & tr {
-			border-bottom: 1px solid var(--color-border-table);
+      border-bottom: 1px solid var(--color-border-table);
       transition: transitions.$transition-main;
 
       &:nth-child(2n) {
         background-color: var(--color-bg-table);
       }
 
-      &:hover {
-        background-color: var(--color-bg-table-hover);
+      @media (hover: hover) {
+        &:hover {
+          background-color: var(--color-bg-table-hover);
+        }
+      }
+
+      @media (hover: none) {
+        &:active {
+          background-color: var(--color-bg-table-hover);
+        }
       }
 
       & img {

@@ -16,7 +16,7 @@
   }
 
   @include media.media(md) {
-		max-height: 60vh;
+    max-height: 60vh;
     width: 100%;
   }
 
@@ -39,9 +39,9 @@
     font-family: fonts.$font-family-main;
     color: var(--color-text-main);
 
-		@include media.media(md) {
-			display: none;
-		}
+    @include media.media(md) {
+      display: none;
+    }
   }
 
   &__subtitle {
@@ -55,7 +55,7 @@
   }
 
   &__navigate {
-		@include scrollbar.custom-scrollbar;
+    @include scrollbar.custom-scrollbar;
 
     overflow-y: auto;
     flex: 1;
@@ -81,14 +81,23 @@
     border-radius: border-radius.$border-radius-link;
     transition: transitions.$transition-main;
 
-    &:not(.navigate__link_active):hover {
+    &_active {
+      border-radius: 0 border-radius.$border-radius-link
+        border-radius.$border-radius-link 0;
+      border-left: 3px solid var(--color-border-link-active);
       background-color: var(--color-bg-link-hover);
     }
 
-    &_active {
-      border-radius: 0 border-radius.$border-radius-link border-radius.$border-radius-link 0;
-      border-left: 3px solid var(--color-border-link-active);
-      background-color: var(--color-bg-link-hover);
+    @media (hover: hover) {
+      &:not(.navigate__link_active):hover {
+        background-color: var(--color-bg-link-hover);
+      }
+    }
+
+    @media (hover: none) {
+      &:not(.navigate__link_active):active {
+        background-color: var(--color-bg-link-hover);
+      }
     }
   }
 
@@ -107,10 +116,10 @@
   &__marker {
     padding-right: var(--size-200);
   }
-	
+
   &__icon {
     width: var(--size-350);
-		height: auto;
+    height: auto;
     fill: var(--color-icon-invert);
   }
 }

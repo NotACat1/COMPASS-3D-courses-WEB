@@ -36,8 +36,16 @@
     width: fit-content;
     transition: transitions.$transition-main;
 
-    &:hover {
-      opacity: opacity.$opacity-hover-icon;
+    @media (hover: hover) {
+      &:hover {
+        opacity: opacity.$opacity-hover-icon;
+      }
+    }
+
+    @media (hover: none) {
+      &:active {
+        opacity: opacity.$opacity-hover-icon;
+      }
     }
   }
 }
@@ -65,7 +73,7 @@
   &__icon {
     display: block;
     width: var(--size-300);
-		height: auto;
+    height: auto;
     fill: var(--color-icon-invert);
   }
 }

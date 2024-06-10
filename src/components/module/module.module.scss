@@ -26,13 +26,27 @@
     flex-direction: row;
   }
 
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--box-shadow-card);
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--box-shadow-card);
 
-    .container__progress {
-      opacity: 1;
-      visibility: visible;
+      .container__progress {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      transform: translateY(-4px);
+      box-shadow: var(--box-shadow-card);
+
+      .container__progress {
+        opacity: 1;
+        visibility: visible;
+      }
     }
   }
 
@@ -50,7 +64,7 @@
     object-fit: contain;
 
     @include media.media(sm) {
-      min-width: 45%;
+      max-width: 45%;
     }
   }
 
