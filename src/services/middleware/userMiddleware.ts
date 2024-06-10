@@ -7,7 +7,7 @@ import { RootState } from 'services/index';
 import UserProgressManager from 'utils/UserProgressManager';
 import ThemeManager from 'utils/ThemeManager';
 
-export function userMiddleware(): Middleware<{}, RootState> {
+export function userMiddleware(): Middleware<RootState> {
   return store => next => (action: any) => {
     // Обработка действия обновления прогресса
     if (action.type === UPDATE_PROGRESS) {
