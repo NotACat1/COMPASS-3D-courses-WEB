@@ -6,16 +6,26 @@
 .button {
   @include reset.reset-button;
 
-  position: fixed;
+  display: block;
+  position: sticky;
   right: var(--size-300);
   bottom: var(--size-300);
+  margin-left: auto;
   padding: var(--size-200);
   background-color: var(--color-bg-button);
   border-radius: border-radius.$border-radius-button;
   transition: transitions.$transition-main;
 
-  &:hover {
-    opacity: opacity.$opacity-hover-icon;
+  @media (hover: hover) {
+    &:hover {
+      opacity: opacity.$opacity-hover-icon;
+    }
+  }
+  
+  @media (hover: none) {
+    &:active {
+      opacity: opacity.$opacity-hover-icon;
+    }
   }
 
   &__image {

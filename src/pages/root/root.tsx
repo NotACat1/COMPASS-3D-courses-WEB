@@ -68,10 +68,10 @@ const RootPage: FC = () => {
           <Loader />
         )}
         {navigation.state !== 'loading' && allModules.length > 0 && <Outlet />}
+        <ThemeSwitcher />
       </main>
       {/* Нижняя часть страницы: футер */}
       {location.pathname === '/' && <Footer />}
-      <ThemeSwitcher />
     </div>
   );
 };
