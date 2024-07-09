@@ -25,6 +25,7 @@
 
   @include media.media(md) {
     flex-direction: column;
+    padding-bottom: var(--size-900);
   }
 
   &__image {
@@ -89,8 +90,16 @@
     text-decoration: underline;
     transition: transitions.$transition-main;
 
-    &:hover {
-      opacity: opacity.$opacity-hover-text;
+    @media (hover: hover) {
+      &:hover {
+        opacity: opacity.$opacity-hover-text;
+      }
+    }
+
+    @media (hover: none) {
+      &:active {
+        opacity: opacity.$opacity-hover-text;
+      }
     }
   }
 }

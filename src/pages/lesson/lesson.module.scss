@@ -67,10 +67,19 @@
     @include typography.typography-paragraph;
 
     margin: var(--size-150) 0;
+    text-align: justify;
 
     &:last-of-type {
       margin-bottom: 0;
     }
+  }
+
+  & code {
+    @include reset.reset-text;
+    @include typography.typography-code;
+
+    font-family: fonts.$font-family-code;
+    color: var(--color-text-main);
   }
 
   & p code {
@@ -85,14 +94,6 @@
     background-color: var(--color-bg-code);
     border: 1px solid var(--color-border-code);
     border-radius: border-radius.$border-radius-code;
-  }
-
-  code {
-    @include reset.reset-text;
-    @include typography.typography-code;
-
-    font-family: fonts.$font-family-code;
-    color: var(--color-text-main);
   }
 
   & ul,
@@ -131,7 +132,15 @@
   border-radius: 8px;
   transition: transitions.$transition-main;
 
-  &:hover {
-    opacity: opacity.$opacity-hover-icon;
+  @media (hover: hover) {
+    &:hover {
+      opacity: opacity.$opacity-hover-icon;
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      opacity: opacity.$opacity-hover-icon;
+    }
   }
 }

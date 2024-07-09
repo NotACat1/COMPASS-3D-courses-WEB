@@ -43,8 +43,16 @@
       transform: translate(0, 0);
     }
 
-    &:hover {
-      opacity: opacity.$opacity-hover-icon;
+    @media (hover: hover) {
+      &:hover {
+        opacity: opacity.$opacity-hover-icon;
+      }
+    }
+
+    @media (hover: none) {
+      &:active {
+        opacity: opacity.$opacity-hover-icon;
+      }
     }
   }
 

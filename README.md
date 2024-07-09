@@ -213,7 +213,7 @@ const LocalStorageManager = {
   },
 
   // Получение данных из Local Storage
-  getItem: (key) => {
+  getItem: key => {
     try {
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : null;
@@ -224,7 +224,7 @@ const LocalStorageManager = {
   },
 
   // Удаление данных из Local Storage
-  removeItem: (key) => {
+  removeItem: key => {
     try {
       localStorage.removeItem(key);
       return true; // Успешно удалено
@@ -280,12 +280,16 @@ class ThemeManager {
   // Переключение между светлой и темной темой
   toggleTheme() {
     // Определяем текущую тему
-    const currentTheme = document.body.classList.contains(this.darkThemeClass) ? this.themes.dark : this.themes.light;
+    const currentTheme = document.body.classList.contains(this.darkThemeClass)
+      ? this.themes.dark
+      : this.themes.light;
     // Определяем следующую тему для переключения
-    const nextTheme = currentTheme === this.themes.light ? this.themes.dark : this.themes.light;
+    const nextTheme =
+      currentTheme === this.themes.light ? this.themes.dark : this.themes.light;
 
     // Устанавливаем класс темы для body
-    document.body.className = nextTheme === this.themes.dark ? this.darkThemeClass : '';
+    document.body.className =
+      nextTheme === this.themes.dark ? this.darkThemeClass : '';
     // Сохраняем тему в локальное хранилище
     this.localStorageManager.setItem(this.storageKey, nextTheme);
 
@@ -296,7 +300,8 @@ class ThemeManager {
   // Установка конкретной темы
   setTheme(theme) {
     // Устанавливаем класс темы для body
-    document.body.className = theme === this.themes.dark ? this.darkThemeClass : '';
+    document.body.className =
+      theme === this.themes.dark ? this.darkThemeClass : '';
     // Сохраняем тему в локальное хранилище
     this.localStorageManager.setItem(this.storageKey, theme);
   }
@@ -325,7 +330,10 @@ class ThemeManager {
 
 class UserProgressManager {
   // Конструктор класса
-  constructor(localStorageManager = LocalStorageManager, storageKey = LOCAL_STORAGE.userProgress) {
+  constructor(
+    localStorageManager = LocalStorageManager,
+    storageKey = LOCAL_STORAGE.userProgress,
+  ) {
     // Используем переданные аргументы или значения по умолчанию
     this.localStorageManager = localStorageManager; // Менеджер локального хранилища
     this.storageKey = storageKey; // Ключ хранения данных прогресса пользователя
@@ -502,7 +510,10 @@ const userReducer = (state = initialState, { type, payload }) => {
       const { module, lesson } = payload;
       return {
         ...state,
-        progress: { ...state.progress, [module]: [...(state.progress[module] || []), lesson] },
+        progress: {
+          ...state.progress,
+          [module]: [...(state.progress[module] || []), lesson],
+        },
       };
     }
     case UPDATE_THEME: {
@@ -537,14 +548,17 @@ export const rootReducer = combineReducers({
 // src/services/middleware/userMiddleware.js
 
 // Middleware для управления состоянием пользователя
-const userMiddleware = (store) => (next) => (action) => {
+const userMiddleware = store => next => action => {
   // Передача действия следующему обработчику в цепочке middleware
   next(action);
 
   // Обработка действия обновления прогресса
   if (action.type === UPDATE_PROGRESS) {
     // Вызываем метод updateProgress из UserProgressManager с передачей данных о модуле и уроке
-    UserProgressManager.updateProgress(action.payload.module, action.payload.lesson);
+    UserProgressManager.updateProgress(
+      action.payload.module,
+      action.payload.lesson,
+    );
   }
 
   // Обработка действия обновления темы
@@ -644,7 +658,8 @@ export default function ErrorPage() {
     // Проверяем наличие текста статуса ошибки
     if (error.status) {
       const data =
-        statusSpecificErrorMessages[error.status] || defaultErrorStatusMessages[Math.floor(error.status / 100) * 100];
+        statusSpecificErrorMessages[error.status] ||
+        defaultErrorStatusMessages[Math.floor(error.status / 100) * 100];
       return {
         code: error.status,
         ...data,
@@ -674,18 +689,22 @@ _Комментарии_:
 ```jsx
 // Компонент главной страницы
 export default function HomePage() {
-  const allModules = useSelector((state) => state.modulesData.modules); // Получаем массив модулей из состояния Redux
-  const userProgress = useSelector((state) => state.userData.progress); // Получаем прогресс пользователя из состояния Redux
+  const allModules = useSelector(state => state.modulesData.modules); // Получаем массив модулей из состояния Redux
+  const userProgress = useSelector(state => state.userData.progress); // Получаем прогресс пользователя из состояния Redux
 
   // Мемоизированный прогресс для оптимизации рендеринга
-  const memoizedProgress = useMemo(() => calculateProgress(allModules, userProgress), [allModules, userProgress]);
+  const memoizedProgress = useMemo(
+    () => calculateProgress(allModules, userProgress),
+    [allModules, userProgress],
+  );
 
   return (
     <>
       {/* Верхняя часть страницы */}
       <div className={styles.header}>
         <h1 className={styles.title}>
-          Основы КОМПАС-3D {/* Компонент отображения прогресса с передачей стилей и значений */}
+          Основы КОМПАС-3D{' '}
+          {/* Компонент отображения прогресса с передачей стилей и значений */}
           <SvgProgress
             extraClass={styles.progress}
             extraTrackClass={styles.progress__track}
@@ -700,7 +719,7 @@ export default function HomePage() {
         <h2 className={styles.content__title}>Программа курса</h2>
         {/* Отображение списка модулей */}
         <ul className={styles.content__list}>
-          {allModules.map((moduleData) => (
+          {allModules.map(moduleData => (
             <Module key={moduleData.id} data={moduleData} />
           ))}
         </ul>
@@ -768,24 +787,26 @@ export default function LessonPage() {
   };
 
   // Получение данных о модулях из состояния Redux
-  const modulesData = useSelector((state) => state.modulesData.modules);
+  const modulesData = useSelector(state => state.modulesData.modules);
 
   // Поиск текущего модуля по идентификатору
-  const currentModule = modulesData.find((module) => module.id === moduleId);
+  const currentModule = modulesData.find(module => module.id === moduleId);
 
   // Получение массива уроков текущего модуля
   const moduleLessons = currentModule?.lessons || [];
 
   // Поиск текущего урока по идентификатору
-  const currentLesson = moduleLessons.find((lesson) => lesson.id === lessonId);
+  const currentLesson = moduleLessons.find(lesson => lesson.id === lessonId);
 
   // Получение индексов текущего модуля и урока в соответствующих массивах
   const indexCurrentModule = modulesData.indexOf(currentModule);
   const indexCurrentLesson = moduleLessons.indexOf(currentLesson);
 
   // Определение является ли текущий модуль последним и является ли текущий урок последним в модуле
-  const isLastModule = indexCurrentModule && indexCurrentModule === modulesData.length - 1;
-  const isLastLesson = indexCurrentLesson && indexCurrentLesson === moduleLessons.length - 1;
+  const isLastModule =
+    indexCurrentModule && indexCurrentModule === modulesData.length - 1;
+  const isLastLesson =
+    indexCurrentLesson && indexCurrentLesson === moduleLessons.length - 1;
 
   // Функция для определения следующей ссылки в зависимости от текущего состояния
   const getNextLink = () => {
@@ -799,7 +820,10 @@ export default function LessonPage() {
       // Если текущий урок последний, перейти к следующему модулю
       return {
         title: 'К следующему модулю',
-        path: nextModule.id && nextModule.lessons[0].id ? `../../${nextModule.id}/${nextModule.lessons[0].id}` : '/',
+        path:
+          nextModule.id && nextModule.lessons[0].id
+            ? `../../${nextModule.id}/${nextModule.lessons[0].id}`
+            : '/',
       };
     }
 
@@ -831,7 +855,12 @@ export default function LessonPage() {
       </Markdown>
 
       {/* Ссылка для перехода на следующую страницу */}
-      <Link onClick={handleClick} className={styles.link} to={path} relative="path">
+      <Link
+        onClick={handleClick}
+        className={styles.link}
+        to={path}
+        relative="path"
+      >
         {title}
       </Link>
     </section>
@@ -879,7 +908,7 @@ export default function RootPage() {
   const navigation = useNavigation();
   const location = useLocation();
 
-  const allModules = useSelector((state) => state.modulesData.modules);
+  const allModules = useSelector(state => state.modulesData.modules);
 
   // Обновление модулей в хранилище при монтировании компонента
   useEffect(() => {
@@ -887,13 +916,17 @@ export default function RootPage() {
   }, [dispatch]);
 
   return (
-    <div className={`${styles.container} ${location.pathname !== '/' && styles.container_lesson}`}>
+    <div
+      className={`${styles.container} ${location.pathname !== '/' && styles.container_lesson}`}
+    >
       {/* Верхняя часть страницы: хедер */}
       <Header />
       {/* Основное содержимое страницы */}
       <main className={styles.content}>
         {/* Маршрутизация внутреннего контента через Outlet */}
-        {(navigation.state === 'loading' || allModules.length === 0) && <Loader />}
+        {(navigation.state === 'loading' || allModules.length === 0) && (
+          <Loader />
+        )}
         {navigation.state !== 'loading' && allModules.length > 0 && <Outlet />}
       </main>
       {/* Нижняя часть страницы: футер */}
@@ -960,3 +993,19 @@ export default function RootPage() {
 Проект является результатом командного труда и открыт для улучшений. Если у вас есть предложения, замечания или желание внести вклад, не стесняйтесь создавать `issues` и `pull requests` в репозитории.
 
 Спасибо за интерес к проекту!
+
+```ts
+const errorData = useMemo(() => {
+  // Проверяем наличие текста статуса ошибки
+  if (error.status) {
+    const data =
+      statusSpecificErrorMessages[error.status] ||
+      defaultErrorStatusMessages[Math.floor(error.status / 100) * 100];
+    return {
+      code: error.status,
+      ...data,
+    };
+  }
+  return undefined;
+}, [error]);
+```

@@ -42,29 +42,45 @@
   @include reset.reset-link;
 
   &_text {
-		@include reset.reset-text;
+    @include reset.reset-text;
     @include typography.typography-link;
 
     width: fit-content;
     font-family: fonts.$font-family-main;
     color: var(--color-text-main);
 
-		&:hover {
-			text-decoration: underline
-		}
+    @media (hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    @media (hover: none) {
+      &:active {
+        text-decoration: underline;
+      }
+    }
   }
 
   &_icon {
     transition: transitions.$transition-main;
-		
-		&:hover {
-			opacity: opacity.$opacity-hover-icon;
-		}
+
+    @media (hover: hover) {
+      &:hover {
+        opacity: opacity.$opacity-hover-icon;
+      }
+    }
+
+    @media (hover: none) {
+      &:active {
+        opacity: opacity.$opacity-hover-icon;
+      }
+    }
 
     & img {
       display: block;
       width: var(--size-300);
-			filter: var(--filter-icon);
+      filter: var(--filter-icon);
     }
   }
 }

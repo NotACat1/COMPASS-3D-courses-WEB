@@ -11,6 +11,7 @@
 // Типографика h1
 @mixin typography-h1 {
   @include typography-custom(40px, 600, 44px);
+
   // Медиа-запрос для планшетов и выше
   @include media.media(md) {
     @include typography-custom(30px, 600, 33px);
