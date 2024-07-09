@@ -26,32 +26,33 @@ const HomePage: FC = () => {
   );
 
   return (
-<>
-  {/* Верхняя часть страницы */}
-  <div className={styles.header}>
-    <h1 className={styles.title}>
-      Основы КОМПАС-3D{' '}
-      {/* Компонент отображения прогресса с передачей стилей и значений */}
-      <SvgProgress
-        extraClass={styles.progress}
-        extraTrackClass={styles.progress__track}
-        extraBarClass={styles.progress__bar}
-        progress={memoizedProgress}
-      /> {memoizedProgress}% {/* Отображение числового значения прогресса */}
-    </h1>
-  </div>
+    <>
+      {/* Верхняя часть страницы */}
+      <div className={styles.header}>
+        <h1 className={styles.title}>
+          Основы КОМПАС-3D{' '}
+          {/* Компонент отображения прогресса с передачей стилей и значений */}
+          <SvgProgress
+            extraClass={styles.progress}
+            extraTrackClass={styles.progress__track}
+            extraBarClass={styles.progress__bar}
+            progress={memoizedProgress}
+          />{' '}
+          {memoizedProgress}% {/* Отображение числового значения прогресса */}
+        </h1>
+      </div>
 
-  {/* Секция с содержанием */}
-  <section className={styles.content}>
-    <h2 className={styles.content__title}>Программа курса</h2>
-    {/* Отображение списка модулей */}
-    <ul className={styles.content__list}>
-      {allModules.map(moduleData => (
-        <Module key={moduleData.id} data={moduleData} />
-      ))}
-    </ul>
-  </section>
-</>
+      {/* Секция с содержанием */}
+      <section className={styles.content}>
+        <h2 className={styles.content__title}>Программа курса</h2>
+        {/* Отображение списка модулей */}
+        <ul className={styles.content__list}>
+          {allModules.map(moduleData => (
+            <Module key={moduleData.id} data={moduleData} />
+          ))}
+        </ul>
+      </section>
+    </>
   );
 };
 
