@@ -18,6 +18,7 @@ import { Api } from './lesson.utils';
 
 // Импортируем таблицу стилей
 import styles from './lesson.module.scss';
+import { IError } from 'utils/interfaces/error';
 
 interface ILoaderData {
   lesson: string;
@@ -44,7 +45,6 @@ export const loader: LoaderFunction = async ({
     // Возвращение данных урока, идентификатора модуля и урока
     return { lesson, moduleId, lessonId };
   } catch (error: any) {
-    console.log(error);
     throw new Response('', { status: error.status });
   }
 };

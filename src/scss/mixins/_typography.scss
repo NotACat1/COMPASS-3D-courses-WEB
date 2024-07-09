@@ -14,7 +14,7 @@
 
   // Медиа-запрос для планшетов и выше
   @include media.media(md) {
-    @include typography-custom(26px, 600, 28px);
+    @include typography-custom(30px, 600, 33px);
   }
 }
 

@@ -1,5 +1,8 @@
 @use './scss/mixins/media';
 
+@import url('assets/fonts/Montserrat/stylesheet.css');
+@import url('assets/fonts/Ubuntu/stylesheet.css');
+
 body {
   // Основные единицы измерения
   --base-ratio: 1;

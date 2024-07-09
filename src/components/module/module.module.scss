@@ -70,12 +70,19 @@
 
   &__title {
     @include reset.reset-text;
-    @include typography.typography-h4-bold;
+    @include typography.typography-h2;
 
     flex: 1;
     margin: 0;
+    padding-top: var(--size-200);
+    text-align: center;
     font-family: fonts.$font-family-main;
     color: var(--color-text-main);
+
+    @include media.media(sm) {
+      padding-top: 0;
+      text-align: left;
+    }
   }
 
   &__progress {
